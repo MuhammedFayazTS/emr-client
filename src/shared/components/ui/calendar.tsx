@@ -26,6 +26,7 @@ function Calendar({
   buttonVariant?: React.ComponentProps<typeof Button>["variant"]
 }) {
   const defaultClassNames = getDefaultClassNames()
+  const isDropdownLayout = captionLayout.startsWith("dropdown")
 
   return (
     <DayPicker
@@ -50,8 +51,14 @@ function Calendar({
           defaultClassNames.months
         ),
         month: cn("flex w-full flex-col gap-4", defaultClassNames.month),
+        // nav: cn(
+        //   "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
+        //   defaultClassNames.nav
+        // ),
         nav: cn(
-          "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
+          isDropdownLayout
+            ? "flex items-center gap-1"
+            : "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
           defaultClassNames.nav
         ),
         button_previous: cn(

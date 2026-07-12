@@ -18,6 +18,12 @@ interface IDefaultDatePickerProps<TFormValues extends FieldValues> {
     width?: number | string;
     readOnly?: boolean;
     withTime?: boolean;
+    /** Enables month + year dropdown navigation instead of prev/next-only */
+    enableYearNavigation?: boolean;
+    /** Earliest navigable month (only used when enableYearNavigation is true) */
+    startMonth?: Date;
+    /** Latest navigable month (only used when enableYearNavigation is true) */
+    endMonth?: Date;
 }
 
 const DefaultDatePicker = <TFormValues extends FieldValues>({
@@ -28,6 +34,9 @@ const DefaultDatePicker = <TFormValues extends FieldValues>({
     width,
     readOnly = false,
     withTime = false,
+    enableYearNavigation = false,
+    startMonth = new Date(1920, 0),
+    endMonth = new Date(),
 }: IDefaultDatePickerProps<TFormValues>) => {
 
     return (
@@ -68,6 +77,12 @@ const DefaultDatePicker = <TFormValues extends FieldValues>({
                                     onSelect={(selected) => {
                                         field.onChange(selected);
                                     }}
+                                    {...(enableYearNavigation && {
+                                        captionLayout: "dropdown" as const,
+                                        navLayout: "after" as const,
+                                        startMonth,
+                                        endMonth,
+                                    })}
                                 />
 
                                 {withTime && (
