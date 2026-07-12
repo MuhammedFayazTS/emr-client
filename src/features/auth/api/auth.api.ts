@@ -22,10 +22,10 @@ export const authApi = {
     },
 
     getMe: async (): Promise<User> => {
-        const res = await axiosInstance.get<ApiSuccessResponse<{ user: User }>>(
+        const res = await axiosInstance.get<ApiSuccessResponse<User>>(
             '/auth/me',
             { withCredentials: true }
         );
-        return res.data.data.user;
+        return res.data.data;
     },
 };
