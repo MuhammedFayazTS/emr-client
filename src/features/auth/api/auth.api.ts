@@ -18,7 +18,7 @@ export const authApi = {
     },
 
     logout: async (): Promise<void> => {
-        await axiosInstance.post('/auth/logout', {}, { withCredentials: true });
+        await axiosInstance.get('/auth/logout');
     },
 
     getMe: async (): Promise<User> => {
