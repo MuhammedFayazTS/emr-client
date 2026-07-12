@@ -18,8 +18,8 @@ export default function LoginForm() {
     defaultValues: {
       // email: '',
       // password: '',
-      email: "sarah@example.com",
-      password: "SecurePass123!"
+      email: "admin@clinic.com",
+      password: "ChangeMeStrong123!"
     },
   });
 

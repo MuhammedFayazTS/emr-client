@@ -1,35 +1,24 @@
-import { Routes, Route, useNavigate } from "react-router-dom"
-import AuthRoutes from "@/app/routers/AuthRoutes"
-import AppRoutes from "./routers/AppRoutes"
-import { ProtectedRoutes } from "@/shared/components/ProtectedRoutes"
-import { PublicRoutes } from "@/shared/components/PublicRoutes"
-import { RouteLoader } from "@/shared/components/RouteLoader"
-import { Suspense, useEffect } from "react"
-import { setSessionExpiredHandler } from "@/shared/api/axiosInstance"
-import { queryClient } from "@/shared/api/queryClient"
 import { authKeys } from "@/features/auth/api/auth.keys"
+import { setSessionExpiredHandler } from "@/shared/api/axiosInstance"
+import { RouteLoader } from "@/shared/components/RouteLoader"
+import { useQueryClient } from "@tanstack/react-query"
+import { Suspense, useEffect } from "react"
+import { Outlet, useNavigate } from "react-router-dom"
 
 function App() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const queryClient = useQueryClient() // instead of importing the singleton
 
   useEffect(() => {
     setSessionExpiredHandler(() => {
-      queryClient.setQueryData(authKeys.currentUser(), null);
-      navigate("/login", { replace: true });
-    });
-  }, [navigate, queryClient]);
+      queryClient.setQueryData(authKeys.currentUser(), null)
+      navigate("/login", { replace: true })
+    })
+  }, [navigate, queryClient])
 
   return (
     <Suspense fallback={<RouteLoader />}>
-      <Routes>
-        <Route element={<PublicRoutes />}>
-          {AuthRoutes()}
-        </Route>
-
-        <Route element={<ProtectedRoutes />}>
-          {AppRoutes()}
-        </Route>
-      </Routes>
+      <Outlet />
     </Suspense>
   )
 }

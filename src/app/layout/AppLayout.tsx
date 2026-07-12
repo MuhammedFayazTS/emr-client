@@ -24,7 +24,7 @@ export default function AppLayout() {
         <SidebarInset className="flex flex-col flex-1 min-w-0">
           <AppHeader />
 
-          <main className="flex-1 overflow-auto bg-muted/30">
+          <main className="flex-1 overflow-auto bg-muted/30 p-3">
             <Outlet />
           </main>
         </SidebarInset>

@@ -10,9 +10,13 @@ export interface ApiError {
     status?: number;
 }
 
+export interface CursorPagination {
+    nextCursor: string | null;
+    hasNextPage: boolean;
+    limit: number;
+}
+
 export interface PaginatedResponse<T> {
     data: T[];
-    total: number;
-    page: number;
-    pageSize: number;
+    pagination: CursorPagination;
 }
