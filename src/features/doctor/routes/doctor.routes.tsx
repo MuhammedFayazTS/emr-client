@@ -17,4 +17,3 @@ export const doctorRoutes: RouteObject[] = [
     },
 ]
 
-export default doctorRoutes

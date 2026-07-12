@@ -16,5 +16,3 @@ export const departmentRoutes: RouteObject[] = [
         ],
     },
 ]
-
-export default departmentRoutes
