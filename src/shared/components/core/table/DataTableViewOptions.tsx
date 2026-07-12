@@ -20,7 +20,7 @@ export function DataTableViewOptions<TData>({
 }: DataTableViewOptionsProps<TData>) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger render={(
         <Button
           aria-label="Toggle columns"
           variant="outline"
@@ -30,6 +30,7 @@ export function DataTableViewOptions<TData>({
           <Ellipsis className="mr-2 size-4" />
           View
         </Button>
+      )}>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>

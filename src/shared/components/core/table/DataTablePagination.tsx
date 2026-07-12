@@ -1,4 +1,3 @@
-import React from "react";
 import type { Table } from "@tanstack/react-table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shared/components/ui/select";
 import { Button } from "@shared/components/ui/button";

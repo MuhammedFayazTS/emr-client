@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import {
     DropdownMenu,
     DropdownMenuTrigger,
@@ -7,7 +7,7 @@ import {
     DropdownMenuSeparator,
 } from "@shared/components/ui/dropdown-menu";
 import { Button } from "@shared/components/ui/button";
-import { EllipsisVertical, LucideIcon } from "lucide-react";
+import { EllipsisVertical, type LucideIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@shared/components/ui/tooltip";
 
 export interface IAction {
@@ -31,7 +31,7 @@ export const Actions = ({ actions, children, isDropDown = false }: IActions) => 
             {
                 isDropDown ?
                     (<DropdownMenu>
-                        <DropdownMenuTrigger asChild>
+                        <DropdownMenuTrigger render={(
                             <Button
                                 aria-label="Open menu"
                                 variant="ghost"
@@ -39,6 +39,7 @@ export const Actions = ({ actions, children, isDropDown = false }: IActions) => 
                             >
                                 <EllipsisVertical className="size-4" aria-hidden="true" />
                             </Button>
+                        )}>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-40">
                             {actions && actions.length ? (
@@ -67,7 +68,7 @@ export const Actions = ({ actions, children, isDropDown = false }: IActions) => 
                                         <TooltipProvider
                                             key={index}>
                                             <Tooltip>
-                                                <TooltipTrigger asChild>
+                                                <TooltipTrigger render={(
                                                     <Button
                                                         variant={variant ? variant : 'default'}
                                                         disabled={disabled}
@@ -75,6 +76,7 @@ export const Actions = ({ actions, children, isDropDown = false }: IActions) => 
                                                     >
                                                         {Icon && <Icon />}
                                                     </Button>
+                                                )}>
                                                 </TooltipTrigger>
                                                 <TooltipContent>
                                                     <p>{title}</p>

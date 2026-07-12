@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useReactTable, getCoreRowModel } from '@tanstack/react-table';
 
@@ -152,7 +152,7 @@ export default function ReceptionistList() {
             </div>
 
             <ViewDetailModal
-                open={!!selectedReceptionist}
+                open={viewModalOpen}
                 onOpenChange={(open) => {
                     if (!open) setSelectedReceptionist(null);
                 }}

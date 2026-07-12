@@ -63,8 +63,6 @@ export const PERMISSIONS = {
     },
 } as const;
 
-type PermissionGroup = typeof PERMISSIONS[keyof typeof PERMISSIONS];
-
 export type Permission = {
     [K in keyof typeof PERMISSIONS]: (typeof PERMISSIONS)[K][keyof (typeof PERMISSIONS)[K]];
 }[keyof typeof PERMISSIONS];

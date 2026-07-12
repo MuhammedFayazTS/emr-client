@@ -6,6 +6,7 @@ import { doctorRoutes } from "@/features/doctor/routes/doctor.routes"
 import { patientRoutes } from "@/features/patient/routes/patient.routes"
 import { receptionistRoutes } from "@/features/receptionist/routes/receptionist.routes"
 import { doctorScheduleRoutes } from "@/features/doctor-schedule/routes/doctorSchedule.routes"
+import { appointmentRoutes } from "@/features/appointment/routes/appointment.routes"
 
 const Dashboard = () => <div className="p-6">Dashboard Page Content</div>
 
@@ -20,8 +21,9 @@ export const appRoutes: RouteObject[] = [
             ...receptionistRoutes,
             ...patientRoutes,
             ...doctorScheduleRoutes,
+            ...appointmentRoutes,
             { index: true, element: <Navigate to="dashboard" replace /> },
-            { path: "*", element: <Navigate to="dashboard" replace /> },
+            // { path: "*", element: <Navigate to="dashboard" replace /> },
         ],
     },
 ]

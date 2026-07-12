@@ -29,7 +29,8 @@ export function DataTableColumnHeader<TData, TValue>({
   return (
     <div className={cn("flex items-center space-x-2", className)}>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger render={(
+
           <Button
             aria-label={
               column.getIsSorted() === "desc"
@@ -51,6 +52,7 @@ export function DataTableColumnHeader<TData, TValue>({
               <ArrowUpDown className="ml-2 size-4" aria-hidden="true" />
             )}
           </Button>
+        )}>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           {column.getCanSort() && (
