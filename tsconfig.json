@@ -4,4 +4,15 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@routers/*": ["./src/app/routers/*"],
+      "@features/*": ["./src/features/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@shared/components/*": ["./src/shared/components/*"],
+      "@shared/layouts/*": ["./src/shared/layouts/*"],
+      "@shared/utils/*": ["./src/shared/utils/*"]
+    }
+  }
 }
