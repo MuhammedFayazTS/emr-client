@@ -7,12 +7,12 @@ import type {
 } from '../types/department.types';
 
 export const departmentApi = {
-    getList: async (filters: DepartmentFilters): Promise<PaginatedResponse<Department>> => {
-        const res = await axiosInstance.get<ApiSuccessResponse<PaginatedResponse<Department>>>(
+    getList: async (filters: DepartmentFilters): Promise<PaginatedResponse<Department[]>> => {
+        const res = await axiosInstance.get<PaginatedResponse<Department[]>>(
             '/departments',
             { params: filters }
         );
-        return res.data.data;
+        return res.data;
     },
 
     getOne: async (id: string): Promise<Department> => {

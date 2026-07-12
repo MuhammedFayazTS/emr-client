@@ -2,19 +2,6 @@ import type { ColumnDef } from '@tanstack/react-table';
 import type { Department } from '../types/department.types';
 import { TableRowActions } from '@/shared/components/core/table/DataTableRowActions';
 
-/**
- * Extend TanStack Table's RowData to include our custom meta with the onView callback.
- */
-declare module '@tanstack/react-table' {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    interface TableMeta<TData extends unknown> {
-        onView?: (row: Department) => void;
-        onEdit?: (row: Department) => void;
-        onDelete?: (row: Department) => void;
-        isDeleting?: boolean
-    }
-}
-
 export function getDepartmentColumns(): ColumnDef<Department>[] {
     return [
         {

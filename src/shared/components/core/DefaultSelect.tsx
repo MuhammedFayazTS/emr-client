@@ -15,7 +15,7 @@ import { Input } from "../ui/input";
 
 export type SelectOption = {
     label: string;
-    value: number;
+    value: string | number;
 };
 
 interface IDefaultSelectProps<TFormValues extends FieldValues> {
@@ -31,7 +31,7 @@ interface IDefaultSelectProps<TFormValues extends FieldValues> {
     options?: SelectOption[];
     isLoading?: boolean;
     disabled?: boolean;
-    onChangeCallback?: (value: number | null) => void;
+    onChangeCallback?: (value: string | number | null) => void;
 }
 
 export const DefaultSelect = <TFormValues extends FieldValues>({
@@ -77,17 +77,27 @@ export const DefaultSelect = <TFormValues extends FieldValues>({
             disabled={disabled}
             render={({ field, fieldState: { error } }) => {
                 const handleValueChange = (value: string | undefined) => {
-                    const numberValue = value ? parseInt(value, 10) : null;
-                    field.onChange(numberValue);
-                    if (onChangeCallback) {
-                        onChangeCallback(numberValue);
+                    if (!value) {
+                        field.onChange(null);
+                        onChangeCallback?.(null);
+                        return;
                     }
+                    // Handle string Mongo ObjectIDs vs auto-increment numeric IDs
+                    const isNumeric = !isNaN(Number(value)) && value.trim() !== "" && value.length < 15;
+                    const parsedValue = isNumeric ? Number(value) : value;
+                    
+                    field.onChange(parsedValue);
+                    onChangeCallback?.(parsedValue);
                 };
 
                 const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
                     const value = e.target?.value || "";
                     setSearch(value);
                 };
+
+                const selectedOption = options.find(
+                    (opt) => opt.value?.toString() === field.value?.toString()
+                );
 
                 return (
                     <Field
@@ -110,7 +120,9 @@ export const DefaultSelect = <TFormValues extends FieldValues>({
                                     }}
                                 >
                                     <SelectTrigger className={inputClassName} disabled={disabled}>
-                                        <SelectValue placeholder={placeholder} />
+                                        <SelectValue placeholder={placeholder}>
+                                            {selectedOption ? selectedOption.label : undefined}
+                                        </SelectValue>
                                     </SelectTrigger>
                                     <SelectContent side="bottom">
                                         <SelectGroup>

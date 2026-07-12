@@ -16,7 +16,7 @@ export interface CursorPagination {
     limit: number;
 }
 
-export interface PaginatedResponse<T> {
-    data: T[];
+export interface PaginatedResponse<T> extends Omit<ApiSuccessResponse<T>, "data"> {
+    data: T;
     pagination: CursorPagination;
 }
