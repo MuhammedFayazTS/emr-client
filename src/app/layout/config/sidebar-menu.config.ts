@@ -35,6 +35,13 @@ export const sidebarMenuItems: SidebarMenuItemType[] = [
         requiredPermissions: [PERMISSIONS.DOCTOR.VIEW],
     },
     {
+        title: "Doctors Schedule",
+        path: "/doctor-schedules",
+        icon: Stethoscope,
+        // TODO: add permission of doctor schedule
+        requiredPermissions: [PERMISSIONS.DOCTOR.VIEW],
+    },
+    {
         title: "Receptionists",
         path: "/receptionists",
         icon: UserCog,
