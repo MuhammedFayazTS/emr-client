@@ -37,7 +37,7 @@ export function getDoctorScheduleColumns(): ColumnDef<DoctorSchedule>[] {
       header: "",
       size: 120,
       cell: ({ row, table }) => {
-        const { onView, onEdit, onDelete, isDeleting } = table.options.meta ?? {};
+        const { onView, onEdit, onDelete, isDeleting = false } = table.options.meta ?? {};
         return (
           <TableRowActions
             row={row.original}

@@ -1,13 +1,15 @@
 import type { WorkflowAction } from "../components/AppointmentWorkflowActions";
 
-export enum AppointmentStatus {
-  SCHEDULED = "SCHEDULED",
-  ARRIVED = "ARRIVED",
-  IN_PROGRESS = "IN_PROGRESS",
-  COMPLETED = "COMPLETED",
-  CANCELLED = "CANCELLED",
-  NO_SHOW = "NO_SHOW",
-}
+export const AppointmentStatus = {
+  SCHEDULED: "SCHEDULED",
+  ARRIVED: "ARRIVED",
+  IN_PROGRESS: "IN_PROGRESS",
+  COMPLETED: "COMPLETED",
+  CANCELLED: "CANCELLED",
+  NO_SHOW: "NO_SHOW",
+} as const;
+
+export type AppointmentStatusTypes = (typeof AppointmentStatus)[keyof typeof AppointmentStatus];
 
 export interface AppointmentRef {
   id?: string;
@@ -27,7 +29,7 @@ export interface Appointment {
   date: string;
   startTime: string;
   endTime: string;
-  status: AppointmentStatus;
+  status: AppointmentStatusTypes;
   purpose?: string;
   notes?: string;
   cancelledAt?: string;
@@ -36,6 +38,7 @@ export interface Appointment {
   createdAt?: string;
   updatedAt?: string;
 }
+
 
 export interface AppointmentTableMeta {
   onArrive: (app: Appointment) => void;
@@ -48,7 +51,7 @@ export interface AppointmentFilters {
   doctorId?: string;
   departmentId?: string;
   patientId?: string;
-  status?: AppointmentStatus;
+  status?: AppointmentStatusTypes;
   dateFrom?: string;
   dateTo?: string;
   cursor?: string;

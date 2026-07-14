@@ -1,5 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import type { Appointment, AppointmentTableMeta } from "../types/appointment.types";
+import type { Appointment, AppointmentStatusTypes, AppointmentTableMeta } from "../types/appointment.types";
 import { TableRowActions } from "@/shared/components/core/table/DataTableRowActions";
 import { Badge } from "@/shared/components/ui/badge";
 import { AppointmentWorkflowActions } from "./AppointmentWorkflowActions";
@@ -13,7 +13,7 @@ import {
 import { AppointmentStatus } from "../types/appointment.types";
 
 function getStatusVariant(
-  status: AppointmentStatus,
+  status: AppointmentStatusTypes,
 ): "default" | "secondary" | "destructive" | "outline" {
   switch (status) {
     case AppointmentStatus.COMPLETED:
@@ -67,7 +67,7 @@ export function getAppointmentColumns(): ColumnDef<Appointment>[] {
       accessorKey: "status",
       header: "Status",
       cell: ({ row }) => {
-        const status = row.getValue<AppointmentStatus>("status");
+        const status = row.getValue<AppointmentStatusTypes>("status");
         return <Badge variant={getStatusVariant(status)}>{getStatusLabel(status)}</Badge>;
       },
     },

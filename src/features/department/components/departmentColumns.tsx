@@ -30,7 +30,7 @@ export function getDepartmentColumns(): ColumnDef<Department>[] {
       header: "",
       size: 120,
       cell: ({ row, table }) => {
-        const { onView, onEdit, onDelete, isDeleting } = table.options.meta ?? {};
+        const { onView, onEdit, onDelete, isDeleting = false } = table.options.meta ?? {};
 
         return (
           <TableRowActions

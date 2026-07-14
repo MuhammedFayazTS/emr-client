@@ -1,4 +1,4 @@
-import type { AppointmentRef, AppointmentStatus } from "../types/appointment.types";
+import type { AppointmentRef, AppointmentStatusTypes } from "../types/appointment.types";
 import { AppointmentStatus as Status } from "../types/appointment.types";
 
 export function resolveEntityLabel(entity: string | AppointmentRef | undefined): string {
@@ -20,7 +20,7 @@ export function formatAppointmentTime(startTime: string, endTime: string): strin
   return `${startTime} – ${endTime}`;
 }
 
-export function getStatusLabel(status: AppointmentStatus): string {
+export function getStatusLabel(status: AppointmentStatusTypes): string {
   return status.replace(/_/g, " ");
 }
 
@@ -34,18 +34,18 @@ export const appointmentStatusOptions = [
   { label: "No Show", value: "NO_SHOW" },
 ] as const;
 
-export function canEditAppointment(status: AppointmentStatus): boolean {
+export function canEditAppointment(status: AppointmentStatusTypes): boolean {
   return status !== Status.CANCELLED && status !== Status.COMPLETED;
 }
 
-export function canCancelAppointment(status: AppointmentStatus): boolean {
+export function canCancelAppointment(status: AppointmentStatusTypes): boolean {
   return status !== Status.CANCELLED && status !== Status.COMPLETED;
 }
 
-export function canArriveAppointment(status: AppointmentStatus): boolean {
+export function canArriveAppointment(status: AppointmentStatusTypes): boolean {
   return status === Status.SCHEDULED;
 }
 
-export function canCompleteAppointment(status: AppointmentStatus): boolean {
+export function canCompleteAppointment(status: AppointmentStatusTypes): boolean {
   return status === Status.ARRIVED || status === Status.IN_PROGRESS;
 }

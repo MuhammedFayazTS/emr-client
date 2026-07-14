@@ -64,16 +64,16 @@ export default function DoctorScheduleForm() {
     },
   });
 
-  const onSubmit = (payload: CreateDoctorScheduleOutput) => {
+  const onSubmit = (payload: CreateDoctorScheduleFormInput) => {
     if (isEdit) {
       updateSchedule(
-        { id: id as string, payload },
+        { id: id, payload } as { id: string , payload: CreateDoctorScheduleOutput},
         {
           onSuccess: () => navigate("/doctor-schedules"),
         },
       );
     } else {
-      createSchedule(payload, {
+      createSchedule(payload as CreateDoctorScheduleOutput, {
         onSuccess: () => navigate("/doctor-schedules"),
       });
     }

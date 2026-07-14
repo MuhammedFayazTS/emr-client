@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import { getAppointmentColumns } from "../components/appointmentColumns";
-import type { Appointment, AppointmentStatus } from "../types/appointment.types";
+import type { Appointment, AppointmentStatusTypes } from "../types/appointment.types";
 import { DefaultTable } from "@/shared/components/core/table/DefaultTable";
 import { DefaultTableSkeleton } from "@/shared/components/core/table/DefaultTableSkelton";
 import { Alert, AlertDescription } from "@/shared/components/ui/alert";
@@ -40,7 +40,7 @@ export default function AppointmentList() {
     defaultValues: { status: "" },
   });
 
-  const selectedStatus = filterForm.watch("status") as AppointmentStatus | "";
+  const selectedStatus = filterForm.watch("status") as AppointmentStatusTypes | "";
 
   const [currentCursor, setCurrentCursor] = useState<string | undefined>();
   const [cursorStack, setCursorStack] = useState<(string | undefined)[]>([]);
@@ -210,7 +210,7 @@ export default function AppointmentList() {
       onComplete: handleComplete,
       onCancel: handleCancelRequest,
       pendingAction,
-    },
+    } as any,
   });
 
   if (error) {
