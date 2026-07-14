@@ -1,9 +1,9 @@
-import { Outlet, useNavigate } from "react-router-dom"
-import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser"
-import { useLogout } from "@/features/auth/hooks/useLogout"
-import { SidebarProvider, SidebarInset } from "@/shared/components/ui/sidebar"
-import { AppSidebar } from "./components/AppSidebar"
-import { AppHeader } from "./components/AppHeader"
+import { Outlet, useNavigate } from "react-router-dom";
+import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
+import { useLogout } from "@/features/auth/hooks/useLogout";
+import { SidebarProvider, SidebarInset } from "@/shared/components/ui/sidebar";
+import { AppSidebar } from "./components/AppSidebar";
+import { AppHeader } from "./components/AppHeader";
 
 export default function AppLayout() {
   const { data: user } = useCurrentUser();

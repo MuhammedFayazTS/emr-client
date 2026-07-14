@@ -1,20 +1,20 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
-export const formatOption = (item: { name: string; _id?: string, id?: string }) => {
+export const formatOption = (item: { name: string; _id?: string; id?: string }) => {
   if (!item?.id && !item?._id) return;
-  return ({
+  return {
     label: item.name,
     value: item._id || item.id,
-  })
+  };
 };
 
-export const formatOptions = (data: { name: string; _id?: string, id?: string }[]) => {
+export const formatOptions = (data: { name: string; _id?: string; id?: string }[]) => {
   return data?.map((item) => {
-    return formatOption(item)
+    return formatOption(item);
   });
 };

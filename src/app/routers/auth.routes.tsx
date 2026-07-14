@@ -1,13 +1,13 @@
-import { lazy } from "react"
-import type { RouteObject } from "react-router-dom"
+import { lazy } from "react";
+import type { RouteObject } from "react-router-dom";
 
-const LoginPage = lazy(() => import("@features/auth/pages/LoginPage"))
+const LoginPage = lazy(() => import("@features/auth/pages/LoginPage"));
 
 export const authRoutes: RouteObject[] = [
-    {
-        path: "/login",
-        element: <LoginPage />,
-    },
-]
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+];
 
-export default authRoutes
+export default authRoutes;

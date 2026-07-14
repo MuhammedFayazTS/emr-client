@@ -3,7 +3,14 @@ import { flexRender, type Table as TanstackTable } from "@tanstack/react-table";
 import { cn } from "@/shared/utils/utils";
 import { getCommonPinningStyles } from "@shared/utils/data-table";
 import { DataTablePagination } from "./DataTablePagination";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@shared/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@shared/components/ui/table";
 
 interface DataTableProps<TData> extends React.HTMLAttributes<HTMLDivElement> {
   table: TanstackTable<TData>;
@@ -35,10 +42,7 @@ export function DefaultTable<TData>({
                   >
                     {header.isPlaceholder
                       ? null
-                      : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                      : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
@@ -55,20 +59,14 @@ export function DefaultTable<TData>({
                         ...getCommonPinningStyles({ column: cell.column }),
                       }}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <tr>
-                <td
-                  colSpan={table.getAllColumns().length}
-                  className="h-24 text-center"
-                >
+                <td colSpan={table.getAllColumns().length} className="h-24 text-center">
                   No results.
                 </td>
               </tr>

@@ -1,6 +1,6 @@
-import type { Table } from "@tanstack/react-table"
+import type { Table } from "@tanstack/react-table";
 
-import { Button } from "@shared/components/ui/button"
+import { Button } from "@shared/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -8,39 +8,35 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@shared/components/ui/dropdown-menu"
-import { Ellipsis } from "lucide-react"
+} from "@shared/components/ui/dropdown-menu";
+import { Ellipsis } from "lucide-react";
 
 interface DataTableViewOptionsProps<TData> {
-  table: Table<TData>
+  table: Table<TData>;
 }
 
-export function DataTableViewOptions<TData>({
-  table,
-}: DataTableViewOptionsProps<TData>) {
+export function DataTableViewOptions<TData>({ table }: DataTableViewOptionsProps<TData>) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={(
-        <Button
-          aria-label="Toggle columns"
-          variant="outline"
-          size="sm"
-          className="ml-auto hidden h-8 lg:flex"
-        >
-          <Ellipsis className="mr-2 size-4" />
-          View
-        </Button>
-      )}>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            aria-label="Toggle columns"
+            variant="outline"
+            size="sm"
+            className="ml-auto hidden h-8 lg:flex"
+          >
+            <Ellipsis className="mr-2 size-4" />
+            View
+          </Button>
+        }
+      ></DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
-          .filter(
-            (column) =>
-              typeof column.accessorFn !== "undefined" && column.getCanHide()
-          )
+          .filter((column) => typeof column.accessorFn !== "undefined" && column.getCanHide())
           .map((column) => {
             return (
               <DropdownMenuCheckboxItem
@@ -51,9 +47,9 @@ export function DataTableViewOptions<TData>({
               >
                 <span className="truncate">{column.id}</span>
               </DropdownMenuCheckboxItem>
-            )
+            );
           })}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
