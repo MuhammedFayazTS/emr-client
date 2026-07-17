@@ -39,7 +39,6 @@ export interface Appointment {
   updatedAt?: string;
 }
 
-
 export interface AppointmentTableMeta {
   onArrive: (app: Appointment) => void;
   onComplete: (app: Appointment) => void;

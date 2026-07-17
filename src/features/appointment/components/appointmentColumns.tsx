@@ -1,5 +1,9 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import type { Appointment, AppointmentStatusTypes, AppointmentTableMeta } from "../types/appointment.types";
+import type {
+  Appointment,
+  AppointmentStatusTypes,
+  AppointmentTableMeta,
+} from "../types/appointment.types";
 import { TableRowActions } from "@/shared/components/core/table/DataTableRowActions";
 import { Badge } from "@/shared/components/ui/badge";
 import { AppointmentWorkflowActions } from "./AppointmentWorkflowActions";

@@ -66,12 +66,9 @@ export default function DoctorScheduleForm() {
 
   const onSubmit = (payload: CreateDoctorScheduleFormInput) => {
     if (isEdit) {
-      updateSchedule(
-        { id: id, payload } as { id: string , payload: CreateDoctorScheduleOutput},
-        {
-          onSuccess: () => navigate("/doctor-schedules"),
-        },
-      );
+      updateSchedule({ id: id, payload } as { id: string; payload: CreateDoctorScheduleOutput }, {
+        onSuccess: () => navigate("/doctor-schedules"),
+      });
     } else {
       createSchedule(payload as CreateDoctorScheduleOutput, {
         onSuccess: () => navigate("/doctor-schedules"),
