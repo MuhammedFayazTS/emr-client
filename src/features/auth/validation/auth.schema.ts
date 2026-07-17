@@ -1,10 +1,10 @@
-import { z } from 'zod';
-import { emailSchema, passwordSchema } from '@/shared/validation/primitives';
+import { z } from "zod";
+import { emailSchema, passwordSchema } from "@/shared/validation/primitives";
 
 export const loginSchema = z.object({
-    email: emailSchema,
-    password: passwordSchema,
-    userAgent: z.string().optional(),
+  email: emailSchema,
+  password: passwordSchema,
+  userAgent: z.string().optional(),
 });
 
 export type LoginInput = z.infer<typeof loginSchema>;

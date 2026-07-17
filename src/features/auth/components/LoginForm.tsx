@@ -1,31 +1,28 @@
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from 'react-router-dom';
-import { loginFormSchema, type LoginFormInput } from '../validation/auth.schema';
-import { useLogin } from '../hooks/useLogin';
-import DefaultTextInput from '@/shared/components/core/DefaultTextInput';
-import { Button } from '@/shared/components/ui/button';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import { loginFormSchema, type LoginFormInput } from "../validation/auth.schema";
+import { useLogin } from "../hooks/useLogin";
+import DefaultTextInput from "@/shared/components/core/DefaultTextInput";
+import { Button } from "@/shared/components/ui/button";
 
 export default function LoginForm() {
   const navigate = useNavigate();
   const { mutate: login, isPending, error } = useLogin();
 
-  const {
-    control,
-    handleSubmit,
-  } = useForm<LoginFormInput>({
+  const { control, handleSubmit } = useForm<LoginFormInput>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       // email: '',
       // password: '',
       email: "admin@clinic.com",
-      password: "ChangeMeStrong123!"
+      password: "ChangeMeStrong123!",
     },
   });
 
   const onSubmit = (values: LoginFormInput) => {
     login(values, {
-      onSuccess: () => navigate('/dashboard'),
+      onSuccess: () => navigate("/dashboard"),
     });
   };
 
@@ -47,10 +44,14 @@ export default function LoginForm() {
         placeholder="Enter your password"
       />
 
-      {error && <p role="alert" className="text-sm font-normal text-destructive">{error.message}</p>}
+      {error && (
+        <p role="alert" className="text-sm font-normal text-destructive">
+          {error.message}
+        </p>
+      )}
 
       <Button type="submit" disabled={isPending} className="w-full">
-        {isPending ? 'Logging in…' : 'Log in'}
+        {isPending ? "Logging in…" : "Log in"}
       </Button>
     </form>
   );
